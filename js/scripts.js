@@ -12,10 +12,9 @@ window.addEventListener("load", function(){
 
 			nodes[i].addEventListener("mousemove", function(e) 
 			{
-				var containerLeft = this.getBoundingClientRect().left;
-				var containerTop = this.getBoundingClientRect().top;
-				var containerCenterX = containerLeft + (this.offsetWidth / 2);
-				var containerCenterY = containerTop + (this.offsetHeight / 2);
+				var clientRectangle = this.getBoundingClientRect();
+				var containerCenterX = clientRectangle.left + (this.offsetWidth / 2);
+				var containerCenterY = clientRectangle.top + (this.offsetHeight / 2);
 
 				var elms = this.children;
 			
@@ -25,8 +24,8 @@ window.addEventListener("load", function(){
 					var offsetY = e.clientY - containerCenterY;
 					var index = parseInt(elms[c].getAttribute("data-index"));
 
-					elms[c].style.left = (containerLeft) + ((offsetX * index) / 5) + "px";
-					elms[c].style.top = (containerTop) +  ((offsetY * index) / 5) + "px";
+					elms[c].style.left = (clientRectangle.left) + ((offsetX * index) / 5) + "px";
+					elms[c].style.top = (clientRectangle.top) +  ((offsetY * index) / 5) + "px";
 				}
 			});
 		}
